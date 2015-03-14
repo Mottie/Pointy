@@ -64,9 +64,9 @@ $(function(){
 
 ## Documentation & Demos
 
-* [Main documentation page](http://mottie.github.io/pointy/)
-* [Basic demo](http://mottie.github.io/pointy/docs/basic.html)
-* [Keyboard demo](http://mottie.github.io/pointy/docs/keyboard.html) (using [this plugin](https://github.com/Mottie/Keyboard))
+* [Main documentation page](http://mottie.github.io/Pointy/)
+* [Basic demo](http://mottie.github.io/Pointy/docs/basic.html)
+* [Keyboard demo](http://mottie.github.io/Pointy/docs/keyboard.html) (using [this plugin](https://github.com/Mottie/Keyboard))
 
 ## Version
 
