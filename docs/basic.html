@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Pointy Basic Demo</title>
+
+	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+	<meta name="description" content="pointy: jQuery plugin that dynamically points one element at another." />
+
+	<link href="css/prettify.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.4/semantic.min.css" rel="stylesheet">
+	<link href="css/demo.css" rel="stylesheet">
+	<link href="css/jquery-ui.min.css" rel="stylesheet">
+	<style id="css">
+.main-elem { width: 200px; height: 200px; margin: 0 auto; }
+.pointer { width: 100px; height: 100px; cursor: move; }
+.pointer, .main-elem { text-align: center; padding-top: 40px; }
+.pointer.ui-state-active { float: right; }
+.pointy-active { z-index: 100; }
+	</style>
+</head>
+
+<body>
+
+	<!-- sticky header -->
+	<div class="ui fixed inverted main menu">
+		<img class="brand" src="css/images/pointy.svg" alt="">
+		<div class="container">
+			<a class="item brand" href="http://mottie.github.io/pointy/">docs</a>
+			<div class="section ui page dropdown item inverted">
+				demos
+				<i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item demo1 active" href="basic.html">basic</a>
+					<a class="item demo2" href="keyboard.html">keyboard</a>
+				</div>
+			</div>
+			<div class="right menu">
+				<div class="popup vertically fitted borderless item" data-content="Star project on GitHub">
+					<iframe class="github" src="http://ghbtns.com/github-btn.html?user=mottie&amp;repo=pointy&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
+				</div>
+				<a class="popup icon item" data-content="View project on GitHub" href="https://github.com/Mottie/pointy">
+					<i class="alternate github icon"></i>
+				</a>
+				<a class="popup icon item" data-content="Report an issue" href="https://github.com/Mottie/pointy/issues">
+					<i class="alternate bug icon"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- end sticky header -->
+
+	<div class="ui segment top">
+		<h2 class="center">Scroll down to see the code <i class="arrow down icon"></i></h2>
+	</div>
+
+	<div class="spacer"></div>
+
+<div id="source">
+<div class="demo">
+	<div class="main-elem ui-corner-all ui-widget-content">
+		<h4>Main Element #1</h4>
+	</div>
+	<div class="pointer ui-corner-all ui-widget-content">drag me</div>
+</div>
+
+<div class="demo">
+	<div class="main-elem ui-corner-all ui-widget-content">
+		<h4>Main Element #2</h4>
+	</div>
+	<div class="pointer ui-corner-all ui-widget-content ui-state-active">drag me</div>
+</div>
+</div>
+
+	<div class="spacer"></div>
+
+	<div class="ui segment">
+		<h3>Basic Demo Code</h3>
+		<h4>CSS</h4>
+		<pre class="prettyprint lang-css"></pre>
+		<h4>HTML</h4>
+		<pre class="prettyprint lang-html"></pre>
+		<h4>Javascript</h4>
+		<pre class="prettyprint lang-js"></pre>
+	</div>
+
+	<footer class="ui inverted footer segment">
+		<div class="container">
+			<p class="copyright">
+				Pointy &copy; 2015 <a href="https://github.com/mottie">Rob G</a>.&nbsp;
+				Released under the <a href="https://github.com/mottie/pointy/blob/master/MIT-LICENSE">MIT license</a>.
+			</p>
+		</div>
+	</footer>
+
+	<script src="js/prettify.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.4/semantic.min.js"></script>
+
+	<script src="../src/jquery.pointy.js"></script>
+	<script src="js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="js/demo.js"></script>
+
+<!-- initialize keyboard (required) -->
+<script id="js">
+$(function(){
+
+	// demo block = main element + draggable "pointer" box
+	$('.demo').each( function() {
+
+		var $this = $( this ),
+			// fixed block
+			$main = $this.find('.main-elem'),
+			// draggable element
+			$pointer = $this.find('.pointer');
+
+		// initialize pointy
+		$main.pointy({
+			pointer      : $pointer,
+			// additional class name added to the pointer & the arrow (canvas)
+			// to add a z-index of 1
+			defaultClass : 'zindex',
+			// "pointy-active" class is used to keep the last updated pointer on top
+			// this is the default value
+			activeClass  : 'pointy-active',
+			// arrow base width (in pixels)
+			arrowWidth   : 20
+		});
+
+		$pointer.draggable({
+			containment : 'document',
+			drag : function() {
+				// update pointy while dragging
+				$main.trigger('pointy-update');
+			}
+		});
+
+	});
+
+});
+</script>
+
+</body>
+</html>

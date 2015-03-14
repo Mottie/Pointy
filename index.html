@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Pointy</title>
+
+	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+	<meta name="description" content="Pointy: jQuery plugin that dynamically points one element at another." />
+
+	<link href="docs/css/prettify.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.4/semantic.min.css" rel="stylesheet">
+	<link href="docs/css/demo.css" rel="stylesheet">
+
+</head>
+<body id="main">
+
+	<!-- sticky header -->
+	<div class="ui fixed inverted main menu">
+		<img class="brand" src="docs/css/images/pointy.svg" alt="Pointy">
+		<div class="container">
+			<a class="active item brand" href="http://mottie.github.io/pointy/">docs</a>
+			<div class="section ui page dropdown item inverted">
+				demos
+				<i class="dropdown icon"></i>
+				<div class="menu">
+					<a class="item demo1" href="docs/basic.html">basic</a>
+					<a class="item demo2" href="docs/keyboard.html">keyboard</a>
+				</div>
+			</div>
+			<div class="right menu">
+				<div class="popup vertically fitted borderless item" data-content="Star project on GitHub">
+					<iframe class="github" src="http://ghbtns.com/github-btn.html?user=mottie&amp;repo=pointy&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
+				</div>
+				<a class="popup icon item" data-content="View project on GitHub" href="https://github.com/Mottie/pointy">
+					<i class="alternate github icon"></i>
+				</a>
+				<a class="popup icon item" data-content="Report an issue" href="https://github.com/Mottie/pointy/issues">
+					<i class="alternate bug icon"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- end sticky header -->
+
+	<div class="ui segment top">
+		<h1>
+			<span class="repo-name">Pointy</span>
+			<div class="ui label purple pointer">
+				<i class="heart arrow icon"></i> <span class="version"></span>
+			</div>
+		</h1>
+		<p>A jQuery plugin that dynamically points one element at another.</p>
+
+		<div class="center">
+			<p>Download</p>
+			<div class="ui buttons center">
+				<a href="https://github.com/mottie/pointy/zipball/master">
+					<div class="ui button blue">zip</div>
+				</a>
+				<div class="or"></div>
+				<a href="https://github.com/mottie/pointy/tarball/master">
+					<div class="ui button teal">tar.gz</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="ui segment">
+		<h2>Features</h2>
+		<ul>
+			<li>Pointy will create an arrow, at any angle, pointing from the pointer to the pointee (Pointy).</li>
+			<li>Minimal setup with only one required option - setting the pointer.</li>
+			<li>The background &amp; border color of the arrow will automatically be matched to the pointer, unless overriding options are set.</li>
+			<li>Additional options allow setting the arrow base width &amp; border width.</li>
+		</ul>
+
+		<h2>Notes</h2>
+		<ul>
+			<li>jQuery v1.7+ is the only dependency.</li>
+			<li>jQuery UI draggable is used in these demos, but any draggable plugin may be used.</li>
+			<li>The outer width &amp; height of the elements is used in calculation, so any margin on the pointer will offset the arrow placement.</li>
+			<li>Canvas is used to add an arrow which points from one element to another, so there is limited css effect on the arrow background &amp; border colors.</li>
+		</ul>
+
+		<h2>To Do</h2>
+		<ul>
+			<li>Allow multiple pointers per pointee.</li>
+		</ul>
+
+	</div>
+
+	<!-- MAIN CONTENT -->
+	<div class="ui segment">
+		<h2>Basic Setup</h2>
+		<pre class="prettyprint lang-html">&lt;script src="js/jquery.min.js"&gt;&lt;/script&gt;
+&lt;!-- using jQuery UI draggable --&gt;
+&lt;script src="js/jquery-ui.min.js"&gt;&lt;/script&gt;
+&lt;script src="js/jquery.pointy.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+$(function(){
+
+  // $pointer points at $pointy
+  var $pointer = $('.label.pointer'),
+
+    // initialize pointy (showing all options; but not all defaults)
+    $pointy = $('.repo-name').pointy({
+      pointer      : $pointer,
+      arrowWidth   : 10, // width of pointer base
+      borderWidth  : 1,  // pointer stroke width
+      flipAngle    : 45, // angle @ which to flip pointer to a closer side
+      defaultClass : '', // additional class name added to the pointer & the arrow (canvas)
+      activeClass  : 'pointy-active', // class added to base & pointer on updating
+
+      // optional; if not set, plugin will attempt to match the base color
+      borderColor     : null,
+      backgroundColor : null,
+
+      // tweaks
+      useOffset : null
+    });
+
+  // Using jQuery UI draggable (any draggable code will work)
+  $label.draggable({
+    containment : '.top',
+    drag : function() {
+      $pointy.trigger('pointy-update');
+    }
+  });
+
+});
+&lt;/script&gt;</pre>
+	</div>
+
+	<div class="ui segment">
+		<h2>Options</h2>
+		<ul>
+			<li><code>pointer</code>
+				<ul>
+					<li>jQuery object pointing to the element at the base of the arrow, usually a draggable element.</li>
+					<li>Currently, only one pointer is allowed - multiple pointers planned for a later release.</li>
+					<li>Type: <code>jQuery object</code></li>
+					<li>Default: <code>null</code></li>
+				</ul>
+			</li>
+			<li><code>arrowWidth</code>
+				<ul>
+					<li>Width of the arrow base, in pixels.</li>
+					<li>The base of the arrow will be set to this number of pixesl wide; the tip will be a single pixel.</li>
+					<li>The arrow is drawn on a strategically positioned canvas element.</li>
+					<li>Type: <code>Number</code></li>
+					<li>Default: <code>20</code></li>
+				</ul>
+			</li>
+			<li><code>borderWidth</code>
+				<ul>
+					<li>Stroke border width of the arrow, in pixels.</li>
+					<li>Type: <code>Number</code></li>
+					<li>Default: <code>1</code></li>
+				</ul>
+			</li>
+
+			<li><code>defaultClass</code>
+				<ul>
+					<li>Extra class name(s) added to both the arrow &amp; the base (draggable) element on initialization.</li>
+					<li>If you add more than one class name, use a space to separate the class names.</li>
+					<li>Type: <code>String</code></li>
+					<li>Default: <code>''</code> (empty string)</li>
+				</ul>
+			</li>
+			<li><code>activeClass</code>
+				<ul>
+					<li>Class name added to both the arrow &amp; the base (draggable) element.</li>
+					<li>The <a href="docs/basic.html">basic demo</a> takes advantage of this option by adding a "pointy-active" class which sets the z-index of the last moved base &amp; arrow group to keep it above other pointy element groups.</li>
+					<li>Type: <code>String</code></li>
+					<li>Default: <code>'pointy-active'</code></li>
+				</ul>
+			</li>
+
+			<li><code>flipAngle</code>
+				<ul>
+					<li>Angle at which the the arrow base flips to the side closest to the pointee element.</li>
+					<li>This option only applies when the pointer (draggable element) is NE, SE, SW or NW of the pointee element.</li>
+					<li>Type: <code>Number</code></li>
+					<li>Default: <code>45</code></li>
+				</ul>
+			</li>
+
+			<li><code>borderColor</code>
+				<ul>
+					<li>Optional setting for the arrow border color.</li>
+					<li>If this option is <code>null</code>, then pointy matches the base (draggable element) border color.</li>
+					<li>Type: <code>String</code></li>
+					<li>Default: <code>null</code></li>
+				</ul>
+			</li>
+			<li><code>backgroundColor</code>
+				<ul>
+					<li>Optional setting for the arrow background color.</li>
+					<li>If this option is <code>null</code>, then pointy matches the base (draggable element) background color.</li>
+					<li>Type: <code>String</code></li>
+					<li>Default: <code>null</code></li>
+				</ul>
+			</li>
+
+			<li><code>useOffset</code>
+				<ul>
+					<li>Override Pointy's choice of using jQuery's <code>offset()</code> or <code>postion()</code> to determine the elements coordinates.</li>
+					<li>If this option is <code>null</code>, then Pointy looks for a set margin on the pointee element, if there isn't one, then Pointy uses the element's <code>offset()</code>, otherwise the <code>position()</code> is used.</li>
+					<li>Set this option to either <code>true</code> or <code>false</code>, whichever one works, if Pointy looks like it's having a seizure.</li>
+					<li>Type: <code>Boolean</code></li>
+					<li>Default: <code>null</code></li>
+				</ul>
+			</li>
+
+		</ul>
+	</div>
+
+	<div class="ui segment">
+		<h2>Methods</h2>
+		<ul>
+			<li><h4>Update</h4>
+				<p>The pointy arrow needs to be updated after the pointer (draggable) element is moved</p>
+				Pointy data is stored in the pointee (stationary) element, so use this method to reposition &amp; redraw the arrow:
+				<pre class="prettyprint lang-js">// $('.pointy') is the pointee (stationary) element
+$('.pointy').trigger('pointy-update');</pre>
+			</li>
+			<li><h4>Refresh</h4>
+				<p>If the pointee (stationary) element moves, or was resized then you'll need to refresh pointy to update the internal constants.</p>
+				Refreshing pointy includes an update, so you only need to trigger the refresh method:
+				<pre class="prettyprint lang-js">// $('.pointy') is the pointee (stationary) element
+$('.pointy').trigger('pointy-refresh');</pre>
+				<p>or you could simply trigger a window resize:</p>
+				<pre class="prettyprint lang-js">$(window).resize();</pre>
+			</li>
+			<li><h4>Hide</h4>
+				To hide the pointy arrow when the pointee or pointer elements get hidden, use this method:
+				<pre class="prettyprint lang-js">// $('.pointy') is the pointee (stationary) element
+$('.pointy').trigger('pointy-hide');</pre>
+			</li>
+			<li><h4>Show</h4>
+				To show the pointy arrow after hiding, use this method:
+				<pre class="prettyprint lang-js">// $('.pointy') is the pointee (stationary) element
+$('.pointy').trigger('pointy-show');</pre>
+			</li>
+			<li><h4>Destroy</h4>
+				To remove pointy, call the destroy method as follows:
+				<pre class="prettyprint lang-js">// $('.pointy') is the pointee (stationary) element
+$('.pointy').data('pointy-destroy');</pre>
+			</li>
+		</ul>
+	</div>
+
+	<footer class="ui inverted footer segment">
+		<div class="container">
+			<p class="copyright">
+				Pointy &copy; 2015 <a href="https://github.com/mottie">Rob G</a>.&nbsp;
+				Released under the <a href="https://github.com/mottie/pointy/blob/master/MIT-LICENSE">MIT license</a>.
+			</p>
+		</div>
+	</footer>
+
+	<script src="docs/js/prettify.js"></script>
+	<script src="docs/js/jquery.min.js"></script>
+	<script src="docs/js/jquery-ui.min.js"></script>
+	<script src="docs/js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.4/semantic.min.js"></script>
+	<script src="docs/js/demo.js"></script>
+	<script src="src/jquery.pointy.js"></script>
+	<script>
+	$(function(){
+
+		var $pointer = $('.label.pointer'),
+			$pointy = $('.repo-name').pointy({
+				arrowWidth : 10,
+				pointer : $pointer
+			});
+
+		$('.version').html( 'v' + $.pointy.version );
+		// refresh so we get the updated dimensions of $label
+		$pointy.trigger('pointy-refresh');
+
+		$pointer.draggable({
+			containment : '.top',
+			drag : function() {
+				$pointy.trigger('pointy-update');
+			}
+		});
+
+	});
+	</script>
+
+
+</body>
+</html>

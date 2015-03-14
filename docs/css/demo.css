@@ -1,0 +1,70 @@
+/* pointy - demo CSS */
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+body {
+	width: 98%;
+	margin: 20px auto 0 auto;
+}
+body {
+	background: #222 url(images/noise.jpg);
+	color: #ddd;
+}
+body .ui.menu .dropdown.item .menu {
+	background: #222;
+	color: #ddd;
+}
+
+/* override semantic color (it has an !important flag)*/
+body .ui.inverted.menu .dropdown .menu .item, .ui.inverted.menu .dropdown .menu .item:hover {
+	color: #ddd !important;
+}
+body .ui.inverted.menu .item.active, body .ui.inverted.menu .dropdown .menu .item.active {
+	color: #f2c61f !important;
+}
+.ui.segment, .ui.buttons .or:before {
+	background: #333;
+	color: #ddd;
+}
+.menu .container, .ui.segment {
+	max-width: 850px;
+	margin: 0 auto;
+}
+.ui.segment {
+	margin: 20px auto;
+}
+.ui.top.segment {
+	margin-top: 50px;
+}
+.menu img {
+	float: left;
+	margin-left: 20px;
+	margin-top: 6px;
+	height: 22px;
+}
+.center {
+	margin: 0 auto;
+	text-align: center;
+}
+pre {
+	padding: 10px;
+}
+code {
+	background: #222;
+	padding: 1px 7px;
+}
+.spacer {
+	height: 100px;
+}
+.zindex {
+	z-index: 1;
+}
+.pointy-active {
+	z-index: 100;
+}
+.label.pointy {
+	position: relative;
+	left: 10%;
+	cursor: move;
+	margin-left: 0;
+}

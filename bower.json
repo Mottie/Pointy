@@ -1,0 +1,5 @@
+{
+  "name": "pointy",
+  "version": "1.0.0-beta",
+  "main": "dist/jquery.pointy.min.js"
+}
