@@ -15,7 +15,7 @@
   "scripts": {
     "test": "grunt test"
   },
-  "npmName": "pointy",
+  "npmName": "jquery.pointy",
   "npmFileMap": [{
     "basePath": "",
     "files": [
