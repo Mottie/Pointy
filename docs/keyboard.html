@@ -60,8 +60,6 @@
 
 	<div id="source">
 <div class="demo center">
-	<div class="ui blue button refresh" data-title="Use after resizing the text area" data-content="(see the note in the javascript code)">Refresh</div>
-	<p></p>
 	<textarea class="keyboard" col="20" rows="10" placeholder="Click here to reveal Keyboard"></textarea>
 	<p></p>
 	<input class="keyboard" placeholder=" Click here">
@@ -146,13 +144,26 @@ $(function(){
 		// NOTE: ** textarea resize? **
 		// There is no resize event triggered when a textarea is resized!
 		// Extra code would be necessary to compare changes in the textarea
-		// width or height to make this work dynamically; it's not done in
-		// this demo, but you could add the code from this Stackoverflow
-		// answer: http://stackoverflow.com/a/16848663/145346
-		// to trigger a refresh event, or use jQuery UI resizable
-		$('.refresh').on('click', function(e){
-			$this.trigger('pointy-refresh');
-		});
+		// width or height to make this work dynamically
+		if (this.nodeName === 'TEXTAREA') {
+			var timer,
+				$textarea = $this;
+			$textarea.on('mousemove mouseleave', function() {
+				clearTimeout(timer);
+				// throttle the mousemove event
+				timer = setTimeout(function(){
+					var data = $textarea.data('pointy'),
+						// data isn't defined initially; so prevent any javascript error
+						pointee = data ? data.pointee : false;
+					// compare current pointee dimensions with stored dimensions
+					if ( pointee &&
+						$textarea.outerHeight(true) !== pointee.height ||
+						$textarea.outerWidth() !== pointee.width ) {
+						$textarea.trigger('pointy-refresh');
+					}
+				}, 100);
+			});
+		}
 
 	});
 });
