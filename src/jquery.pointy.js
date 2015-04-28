@@ -282,7 +282,8 @@ var $pointy =	$.pointy = function( pointee, options ) {
 		pointy.$arrow = $( '<canvas class="pointy ' + o.defaultClass + '">' )
 			.css({
 				position : 'absolute',
-				display  : 'none'
+				display  : 'none',
+				'pointer-events' : 'none'
 			});
 		pointy.$pointee.after( pointy.$arrow );
 	};
