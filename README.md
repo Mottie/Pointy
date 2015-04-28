@@ -70,6 +70,13 @@ $(function(){
 
 ## Version
 
+### v1.0.1-beta (4/28/2015)
+
+* Fix npm package name.
+* Add `pointer-events:none` to canvas; this allows clicking through the pointy arrow.
+* Update keyboard demo code to refresh pointy arrow on textarea resize.
+* Update jQuery to v1.11.2.
+
 ### v1.0.0-beta (3/14/2015)
 
 * Initial release

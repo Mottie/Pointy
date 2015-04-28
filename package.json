@@ -1,7 +1,7 @@
 {
   "name": "jquery.pointy",
   "description": "jQuery plugin that dynamically points one element at another",
-  "version": "1.0.0-beta",
+  "version": "1.0.1-beta",
   "homepage": "https://github.com/Mottie/pointy",
   "main": "dist/jquery.pointy.js",
   "demo": "http://mottie.github.io/pointy/",
