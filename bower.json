@@ -1,7 +1,11 @@
 {
   "name": "pointy",
-  "version": "1.0.1-beta",
+  "description": "jQuery plugin that dynamically points one element at another",
+  "version": "1.0.2-beta",
   "main": "dist/jquery.pointy.min.js",
+  "dependencies": {
+    "jquery": ">=1.7"
+  },
   "ignore": [
     "/node_modules",
     "/bower_components",

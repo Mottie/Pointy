@@ -1,4 +1,4 @@
-/* jQuery Pointy plugin v1.0.1-beta (updated 3/14/2015)
+/* jQuery Pointy plugin v1.0.2-beta (updated 3/14/2015)
  * by Rob Garrison (Mottie)
  * MIT License
  * Requires: jQuery v1.7+
@@ -19,7 +19,7 @@
 var $pointy =	$.pointy = function( pointee, options ) {
 	var pointy = this, o;
 
-	$pointy.version = '1.0.1-beta';
+	$pointy.version = '1.0.2-beta';
 
 	pointy.$pointee = $( pointee );
 	pointy.pointee = pointee;

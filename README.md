@@ -1,6 +1,13 @@
-# Pointy
+# Pointy [![Bower Version][bower-image]][bower-url] [![NPM Version][npm-image]][npm-url] [![devDependency Status][david-dev-image]][david-dev-url]
 
 A jQuery plugin that dynamically points one element at another.
+
+[npm-url]: https://www.npmjs.com/package/jquery.pointy
+[npm-image]: https://img.shields.io/npm/v/jquery.pointy.svg
+[david-dev-url]: https://david-dm.org/Mottie/Pointy#info=devDependencies
+[david-dev-image]: https://img.shields.io/david/dev/Mottie/Pointy.svg
+[bower-url]: http://bower.io/search/?q=pointy
+[bower-image]: https://img.shields.io/bower/v/pointy.svg
 
 ## Features
 
@@ -69,6 +76,12 @@ $(function(){
 * [Keyboard demo](http://mottie.github.io/Pointy/docs/keyboard.html) (using [this plugin](https://github.com/Mottie/Keyboard))
 
 ## Version
+
+### v1.0.2-beta (3/22/2016)
+
+* Docs: correction to "trigger" destroy method.
+* Update dependencies.
+* Add repo to bower.
 
 ### v1.0.1-beta (4/28/2015)
 
