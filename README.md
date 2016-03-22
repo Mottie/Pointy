@@ -6,8 +6,8 @@ A jQuery plugin that dynamically points one element at another.
 [npm-image]: https://img.shields.io/npm/v/jquery.pointy.svg
 [david-dev-url]: https://david-dm.org/Mottie/Pointy#info=devDependencies
 [david-dev-image]: https://img.shields.io/david/dev/Mottie/Pointy.svg
-[bower-url]: http://bower.io/search/?q=pointy
-[bower-image]: https://img.shields.io/bower/v/pointy.svg
+[bower-url]: http://bower.io/search/?q=jquery.pointy
+[bower-image]: https://img.shields.io/bower/v/jquery.pointy.svg
 
 ## Features
 
