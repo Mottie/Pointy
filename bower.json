@@ -1,5 +1,20 @@
 {
   "name": "pointy",
   "version": "1.0.1-beta",
-  "main": "dist/jquery.pointy.min.js"
+  "main": "dist/jquery.pointy.min.js",
+  "ignore": [
+    "/node_modules",
+    "/bower_components",
+    "/.git",
+    "/addons",
+    "/beta-testing",
+    "/src",
+    "/docs",
+    "/Gruntfile.js",
+    "/package.json",
+    "/*.txt",
+    "/*.md",
+    "/*.html",
+    "/pointy.jquery.json"
+  ]
 }
